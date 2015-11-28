@@ -285,7 +285,7 @@ var app=window.app=new function(){
 					for(var j=0;j<app.tabs[i].rows_array.length;j++){
 						var match=app.tabs[i].rows_array[j];
 						console.log(match);
-						var string='Начало;'+app.tabs[i].name+'\r\n'+[
+						var string='Начало;'+match.league+'\r\n'+[
 							match.id,//"Номер матча",
 //							'http://www.myscore.ru/match/'+row.id,//"Ссылка на матч",
 							match.date?match.date:match.time,//"Дата матча",

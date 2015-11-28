@@ -107,6 +107,86 @@
 			}
 		},
 		hockey:function(){
+			var tables=document.querySelectorAll('table.hockey')
+			var rows=new Array();
+			for(var lg=0;lg<tables.length;lg++){
+				var league = tables[lg].querySelector('.name').innerText;
+				var elements=tables[lg].getElementsByClassName("stage-finished");
+				for(var i=0;i<elements.length;i++){
+					var id=elements[i].id.split("g_4_")[1];
+					for(var j=0;j<elements[i].childNodes.length;j++){
+						var el=elements[i].childNodes[j],
+							classess=el.className.split(' ');
+							classess.constructor.prototype.has=function(value){
+								return this.indexOf(value)!=-1;
+							}
+						switch(true){
+							case classess.has("time"):
+								var time=el.firstChild.nodeValue;
+							break;				
+							case classess.has("team-home"):
+								var team_home=el.firstChild.firstChild.nodeValue;
+							break;
+							case classess.has("team-away"):
+								var team_away=el.firstChild.firstChild.nodeValue;
+							break;
+							case classess.has("score"):
+								var score=el.firstChild.nodeValue;
+							break;
+							//default:console.log(elements[i].childNodes[j].className);
+						}
+					}
+					
+					var date_match=time.split('.');
+					var years=/[\w\W]+(\d{4,4})\/(\d{4,4})[\w\W]+/.exec(document.title);
+					if(years && years.length==3){
+						year=years[(date_match[1]>6)?1:2]
+					}else{
+						year=(new Date()).getFullYear();					
+					}
+					date_match=new Date(
+						date_match[1]+'-'+date_match[0]+'-'+year
+					);
+					var match={
+						'is_parsed':'-',
+						id:id,
+						type:app.page_type,//'hockey'..
+						time:time,
+						team_home:team_home,
+						team_away:team_away,
+						league:league,
+						score:score,
+						date_start:app.date_start,
+						date_end:app.date_end
+					}
+					if(app.date_start<date_match && app.date_end>date_match){
+						rows.push(match);
+						if(app.debug)console.log(match);
+					}else{
+						if(app.debug)console.log(app.date_start,app.date_end,time,date_match,app.date_start<date_match,app.date_end>date_match);
+					}
+				}
+				if(app.debug)console.log(league,rows,elements.length);
+			}
+			chrome.runtime.sendMessage({
+				action:"data_parsed",
+				data:rows,
+				type:app.page_type,
+				name:document.title.replace("результаты ","")
+			}, function(){
+				if(app.debug){
+					console.log({
+						action:"data_parsed",
+						data:rows,
+						type:app.page_type,
+						name:document.title.replace("результаты ","")
+					});
+				}else{
+					window.close();
+				}
+			});	
+		},
+		__hockey:function(){
 			var elements=document.getElementsByClassName("stage-finished");
 			var rows=new Array();
 			if(app.debug)console.log(elements,elements.length);
