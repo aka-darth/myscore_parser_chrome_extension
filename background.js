@@ -508,8 +508,7 @@ var app=window.app=new function(){
 					if(!app.debug)chrome.tabs.remove(app.work_tabs[i]);
 				}
 				app.work_tabs=[];
-				chrome.storage.local.set({'status':'stop'});
-				pause=true;
+				chrome.storage.local.set({'status':'ready'});
 				generate_files();
 			}
 			break;

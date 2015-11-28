@@ -145,7 +145,7 @@
 						year=(new Date()).getFullYear();					
 					}
 					date_match=new Date(
-						date_match[1]+'-'+date_match[0]+'-'+year
+						year+'-'+date_match[1]+'-'+date_match[0]
 					);
 					var match={
 						'is_parsed':'-',
@@ -159,7 +159,7 @@
 						date_start:app.date_start,
 						date_end:app.date_end
 					}
-					if(app.date_start<date_match && app.date_end>date_match){
+					if(app.date_start<=date_match && app.date_end>=date_match){
 						rows.push(match);
 						if(app.debug)console.log(match);
 					}else{
