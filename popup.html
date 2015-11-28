@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="popup.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	Вставьте ссылки:
+	<textarea id="input" style="height:100px;"></textarea><br>
+	Лог работы:
+	<textarea id="log"></textarea><br>
+	Потоки: <input type="number" id="threads" /><br/>
+	Мин. дата: <input type="date" id="date_start"/><br/>
+	Макс. дата: <input type="date" id="date_end" />
+	<!--
+	Режим отладки: <input type="checkbox" id="debug_mode" />
+	-->
+	<div style="height:66px;">
+		<input type="button" value="Старт!" id="start_button" style="display:none;" />
+		<input type="button" value="Стоп" style="display:none;" id="stop_button" />
+		<input type="button" value="Пауза" style="display:none;" id="pause_button" />
+		<input type="button" value="Сгенерировать файлы" id="make_file_button" style="display:none;" />
+		<input type="button" value="Очистить лог" id="clear_log_button" />
+	</div>
+	<div id="progress_case"><div id="progress_bar" style="">Loading...</div></div>
+	<div id="speedometer"></div>
+	<div id="download"></div>
+</body>
+</html>

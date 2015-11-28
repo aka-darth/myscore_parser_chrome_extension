@@ -1,0 +1,41 @@
+﻿{
+	"name": "Myscore parser by Darth",
+	"manifest_version": 2,
+	"version": "0.1.7",
+	"description": "
+		Плагин для работы с сайтом Myscore.ru
+	",
+	"permissions":
+	[
+		"http://www.myscore.ru/*",
+		"https://www.myscore.ru/*",
+		"storage",
+		"tabs",
+		"unlimitedStorage"
+	],
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"browser_action":{
+		"default_icon":"logo.png",
+		"default_popup":"popup.html"
+	},
+	"options_page": "options.html",
+	"content_scripts":
+	[
+		{
+			"matches": [
+				"http://www.myscore.ru/*/results/"
+			],
+			"js": ["open_detail_statistics.js"], 
+            "run_at":"document_start" 
+		},
+		{
+			"matches": [
+				"http://www.myscore.ru/match/*"
+			],
+			"js": ["parser.js"], 
+            "run_at":"document_start" 
+		}
+	]
+}

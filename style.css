@@ -1,0 +1,71 @@
+body{
+	width:300px;
+	padding:2px;
+	background:rgba(55,55,55,0.8);
+	color:white;
+}
+a{
+	color:#adf;
+}
+a:visited{
+	color:#abcdef;
+}
+textarea{
+	width:300px;
+	height:200px;
+	margin-bottom:7px;
+}
+#get_parsed{
+	display:none;
+}
+#result{
+	display:none;
+}
+#progress_case{
+//	height:35px;
+	width:300px;
+	height:17px;
+	border:1px solid black;
+	border-radius:2px;
+	background:white;
+	display:none;
+	clear:both;
+//	margin-top:7px;
+}
+#progress_bar{
+	background:#f80;
+	height:17px;
+	color:black;
+	font-weight:bold;
+	font-size:14px;
+	text-align:center;
+}
+#threads{
+	width:40px;
+}
+#speedometer{
+	text-align:center;
+}
+#download{
+	margin-top:7px;
+}
+input[type=button]{
+	width:147px;
+	height:22px;
+	margin-top:5px;
+	border-radius:4px;
+	border:1px solid buttonface;
+}
+input[type=button]:hover{
+	background:white;
+	box-shadow:1px 1px 10px 1px #999;
+}
+input[type=button]:nth-child(2n){
+	float:right;
+}
+input[type=button]:nth-child(2n-1){
+	float:left;
+}
+.clearfix:{
+	clear:both;
+}
